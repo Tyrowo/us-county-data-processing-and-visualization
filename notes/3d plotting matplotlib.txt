@@ -1,0 +1,27 @@
+3d matplotlib
+
+import numpy as np
+import matplotlib.pyplot as plt 
+
+ax = plt.axes(projection="3d")
+
+x
+y
+z
+
+ax.scatter(x, y, z) 
+ax.set_title("title")
+ax.set_xlabel("x axis")
+plt.show
+
+
+# scatter plot is just points.
+# to get a surface plot you have to combine the plots via a mesh - which combines the combinations which will plot surfaces
+
+X, Y = np.meshgrid(x, y) 
+Z = # just make sure this is a vector too 
+
+ax.plot_surface(X, Y, Z)
+ax.plot_surface(X, Y, Z, cmap ='Spectral') # this creates a heat range from red to blue
+
+ax.view_init(azim = 0, elev = 90) # change what direction you're initially looking at the map from. I think he said default is top-down 

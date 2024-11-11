@@ -1,0 +1,136 @@
+Flattening took from pre-lunch (was a late lunch 1pm, but before the 2pm lunch cutoff at Bussies) hit pop 43149 at midnight, was still at like 500k leaving work at 630pm i think
+realllly long time - need to rewrite with multithreading
+
+launched from 500 index to 1000 REALLY fast i knew it would turn the corner eventually, it's just like the long counties really take forever
+
+is it faster to write lines or concatenate?
+Concatenation being built in is probably faster right?
+
+really should have optimized this code a little more before I started writing it.
+I guess I just felt really lost trying to navigate pandas and learning it on the fly.
+
+How do you write animated logging?
+Is it possible to create one line. ideally i wanted it so it would delete a character and replace it like - / | \ - / |
+but maybe just . . . . . . as a one line print would be way easier.
+
+but I was concerned about even the if statement - looking for every 10% and seeing if it's i is happening EVERY TIME so when you blow that up to a hundred million on a single computer then yeah it might take forever.
+
+Also I see what weilin meant when he was talking about having no idea if your code has a bug and having to wait for days to find out.
+I wish I had created a little test run data set to convert just like 100000 first to see how efficient it went
+fine tune the logging and debug if the ending would work correctly first. That would've been awesome.
+Gotta talk out your code and watch it play out before you leap into it. Talk and test.
+
+OH NEVERMIND THE TIME FUCK
+we're only at 149 - washoe. 
+that's a pop of 486674
+so it's been about 12 hours to get through that much
+will have to calculate prefix sum
+
+
+it would be a cool display of the front couple compared to the back couple.
+how many of i will it take to equal j given this data set?
+smallest counties vs biggest counties.
+
+also need to grab url and add it to a README doc 
+also add a folder for notes like this one.
+
+a 2 am realization - should always plot your graphs before you start manipulating the data
+I thought I didn't need to optimize because the function itself was decreasing, if it had been decreasing what's the word... logarithmically? then that would've been fine. I analyzed 10 data points and saw a trend and predicted from there, but really the data was more of a straight slope downwards, the stretch from county 20 to 600 is a lot flatter than I expected and so there was a lot of work for each county.
+would've encouraged me to try to optimize or thread beforehand.
+
+in retrospect analyzing the data would have been better instead of looking at the minimum to determine the division amount.
+although dividing by the minimum creates the most accurate data possible, there are only 35 counties listed that have less than 1000 population. If I had rounded those 35 up to 1000 and then divided all the data by 1000 instead of 100 i would have reduced everything by a factor of 10 without losing much data.
+
+once you go up to 10000 it's entry 2410 out of 3145 so that's a little much, 700
+but you could go all the way up to 2500 and that is index 3000. that would have been good.
+if this fails I will divide by 2500. It will make the 16 counties in nebraska look a little more populated but nbd lol and some in north dakota probably overall increasing their population about 20% but overall I think it's not too big an impact
+5000 pop is 2829, also not a huge reduction in data from 3145 but really not that bad about 300 is 10%
+again, need to calculate a prefix sum of the data so that we can make any kind of claims against it.
+iterate through all the entries under 5000 pop and add to the state total 
+
+so i'll create a prefix sum and note at what point they are equal
+and since we have it programmed let's find a way to make a data plot of it too in matplotlib
+
+theoretically going literally 25 times faster would reduce this from taking two days to two hours right lol.
+Still curious to see how local memory impacts it
+
+need more detailed logging - should say what index we're at on the dataframe every once in a while to upgrade that a bit
+should also output a logger file, practice using python loggers
+
+*save the raw giant file for use/sharing with people who have stronger computers,
+have todo to compare data later on run with this
+
+1:21 - naugatuck index 160 pop 451887
+1:55 - Jefferson index 166 pop 436171
+2:25 - claclamas index 172 pop 420925
+3:48 - forsyth   index 189 pop 383739
+5:01 - douglas   index 204 pop 360206
+7:00 - lubbock   index 232 pop 311509
+7:22 - dutchess  index 238 pop 296467 # made it to sub 300s!! hopefully this can speed up a bit now.
+8:39 - st joseph index 260 pop 272388
+9:02 - brown     index 266 pop 268393
+** just thought to close chrome and open up some more memory. Sitting fine at 1350 mb though, only 58% of my laptop's 
+9:27 - mclennan  index 273 pop 261090
+** just thought to put my laptop into high performance mode. duh.
+
+** had to take a nap. came back at 12:31
+12:31 - clermont index 330 pop 208851 
+14:19 - kent     index 369 pop 182400
+15:21 - paulding index 394 pop 169898
+16:06 - ector    index 413 pop 162300
+16:19 - indian river i 418 pop 160986
+	# wanted to see how the rate has gone up now that we're in the 1000s, it's def a lot better but man.
+16:47 - alexandria   i 430 pop 157594
+17:26 - penobscot    i 447 pop 152640
+17:55 - randolph index 460 pop 144403
+* need to leave to go to dinner hopefully it's over before I'm back but unfortunately the time won't be accurate
+20:57 - hardin   index 554 pop 111005
+21:22 - cass     index 570 pop 108205
+* almost finally at the breaking point!! 
+* At 608 we reach sub 100,000
+21:39 - eau claire   i 580 pop 105697
+21:49 - limestone    i 586 pop 104199
+21:60 - whitfield    i 592 pop 103033
+22:07 - nevada       i 597 pop 102322
+22:24 - cleveland    i 608 pop 99527
+22:34 - madison      i 615 pop 98644
+22:55 - lafourche    i 628 pop 97220
+	# it's kinda cool seeing the data in real time. i think about runtimes when a submission takes a long time but never get to see a big data set working in action
+23:07 - grand traverse 637 pop 95315
+23:36 - northumberland 656 pop 91340
+23:46 - christian    i 663 pop 89568
+00:01 - island       i 674 pop 86510
+00:22 - chemung      i 689 pop 83584
+00:55 - clinton      i 714 pop 79839
+01:24 - walton       i 737 pop 76618
+01:39 - tooele       i 749 pop 74032
+02:14 - greenwood    i 781 pop 69506
+02:39 - montcalm     i 803 pop 66901
+
+* this is like the craziest sunk cost fallacy I've ever had in my life.
+* and it still has to sort. am i fucked?
+
+it was at this point that I finally calculated the time complexity of my solution, and realized that, on a whim (by deciding that the data should be sorted by index, worried that it would impact something on the dataframe) I had made the time complexity go up from ON to O NlogN.
+
+What's worse is that the part I had waited over two days to complete was the SHORT part of the time complexity, and was overshadowed by how long sorting will take.
+
+I need to rewrite this function in a way that either is sorted or is multithreaded or both.
+
+
+rather than the loc method, which required you to add the new rows in at the end of the list in the wrong sorted order and then resort, we're going to create the data frame from a list.
+And we will not concat any of the dataframes together because the doucmentation https://pandas.pydata.org/docs/reference/api/pandas.concat.html says it's inefficient to do that or go row by row.
+Instead it recommends creating a big list and concatenating at once, so instead we'll create a big list and just make the data frame from the list.
+
+So that means each thread of our async function just needs to return a list, we can do list concatenation to join all of the thread results together, and then we can stop being asynch and just create the data frame. Which I'm worried prevents us from saving time asynchronously but ah well. 
+
+omg i'm a dummy multithreading is not async ok well maybe we don't need to do that. but let's see if python does do it.
+
+wow that was so much better reworking it. nice.
+
+
+lat is flat, but latitude is a measurement of the y axis.
+
+
+"ignoring" the top x values by reducing them to the x+1th value is a good way to get a better look at all of the other counties.
+you can set a little slider to see the data as is, and use that as a zoom slider so that you can see lower and lower data, because we're effectively just chopping off the z-axis plot, but the ones that go above will still be up to the ceiling.
+Definitely want to incorporate that into the jupyter notebook

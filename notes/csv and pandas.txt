@@ -1,0 +1,28 @@
+CSV with Pandas
+
+'data frame' kind of like a spreadsheet in that it has rows and columns
+
+
+import pandas as pd
+
+#df for data frame 
+df = pd.read_csv('file-path.csv')
+
+print(df.head()) # will print out the top 5 lines of the data frame, see what's going on. 
+	# .tail(10) also works, like bash, and changing value will change number of lines shown default 5
+
+shipping_1day = df[(df['Shipping Type'] == '1 day')] 
+	# this will only get rows where the column 'shipping type' has the value '1 day'
+
+print(len(shipping_1day)) # prints how many entries have that value in the column
+
+shipping_1day.to_csv('shipping-1.csv') 
+
+
+
+https://stackoverflow.com/questions/24284342/insert-a-row-to-pandas-dataframe
+
+
+https://stackoverflow.com/questions/16476924/how-can-i-iterate-over-rows-in-a-pandas-dataframe
+for index, row in df.iterrows():
+    print(row['c1'], row['c2'])
